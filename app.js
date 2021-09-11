@@ -13,7 +13,7 @@ app.use(
 )
 
 app.get('/tits', verifyJWT, (request, response) => {
-    response.json({ info: 'oi, tits' })
+  response.json({ info: 'oi, tits' })
 })
 
 app.listen(port, () => {

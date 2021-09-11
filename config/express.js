@@ -1,15 +1,13 @@
 const express    = require('express');
 const bodyParser = require('body-parser');
-const config     = require('config');
+// const config     = require('config');
 
 module.exports = () => {
   const app = express();
-
-  // SETANDO VARIÁVEIS DA APLICAÇÃO
-  app.set('port', process.env.PORT || config.get('server.port'));
+  app.set('port', process.env.PORT);
 
   // MIDDLEWARES
-  app.use(bodyParser.json());
+  app.use(express.json())
 
   return app;
 };

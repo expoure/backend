@@ -1,3 +1,6 @@
+const address = require("./Address")
+const internetPlan = require("./InternetPlan")
+
 const lead = (sequelize, DataTypes) => {
     const Lead = sequelize.define('Lead', {
       name: {
@@ -9,21 +12,15 @@ const lead = (sequelize, DataTypes) => {
         allowNull: false,
         unique: true
       },
-      value: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      download_speed: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      upload_speed: {
-        type: DataTypes.INTEGER,
-        allowNull: false
+      picture: {
+        type: DataTypes.BLOB("long")
       }
     }, {
       tableName: 'lead'
     })
+
+    Lead.hasOne(internetPlan)
+    Lead.hasOne(address)
   
     return Lead
 }

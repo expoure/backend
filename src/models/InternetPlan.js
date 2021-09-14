@@ -20,8 +20,6 @@ const internetPlan = (sequelize, DataTypes) => {
       tableName: 'internet_plan'
     })
 
-    InternetPlan.belongsTo(Lead)
-  
     return InternetPlan
 }
   

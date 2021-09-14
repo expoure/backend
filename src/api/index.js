@@ -1,14 +1,12 @@
 const express = require('express')
+const jwt = require('jsonwebtoken')
 
-const titsRouter = require('./tits')
+const loginRouter = require('./login')
+const internetPlanRouter = require('./internetPlan')
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-  console.log('funcionando')
-  res.send('App online!')
-})
-
-router.use('/tits', titsRouter)
+router.use('/login', loginRouter)
+router.use('/internet-plan', internetPlanRouter)
 
 module.exports = router

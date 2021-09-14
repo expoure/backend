@@ -19,9 +19,6 @@ const lead = (sequelize, DataTypes) => {
       tableName: 'lead'
     })
 
-    Lead.hasOne(internetPlan)
-    Lead.hasOne(address)
-  
     return Lead
 }
   

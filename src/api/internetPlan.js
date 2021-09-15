@@ -1,7 +1,7 @@
 const express = require('express')
 const { verifyJWT } = require('../utils/authenticate')
 const router = express.Router()
-const { internetPlan } = require('../models')
+const internetPlan = require('../models/InternetPlan')
 const InternetPlanService = require('../services/internetPlan')
 // const { body, check, validationResult } = require('express-validator')
 
@@ -14,10 +14,6 @@ router.get('/', verifyJWT, async (req, res) => {
 
 router.post('/',
   async (req, res) => {
-    // const errors = validationResult(req)
-    // if (!errors.isEmpty()) {
-    //   return res.status(400).json({ errors: errors.array() })
-    // }
     const { description, value, download_speed, upload_speed } = req.body
     try {
       await internetPlanService.adicionar({ description, value, download_speed, upload_speed })
@@ -25,6 +21,6 @@ router.post('/',
     } catch (erro) {
       res.status(400).send(erro.message)
     }
-  })
+})
 
 module.exports = router

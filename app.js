@@ -1,10 +1,9 @@
 const express = require('express')
 const cors = require('cors')
-const bodyParser = require('body-parser')
 require("dotenv-safe").config()
 const routers = require('./src/api')
-const { sequelize } = require('./src/models')
-
+// const { sequelize } = require('./src/models')
+require('./src/database');
 const app = require('./config/express')();
 const port = app.get('port');
 app.use(cors())
@@ -18,9 +17,9 @@ app.use('/', routers)
 //   })
 // )
 
-sequelize.sync().then(() => {
-  console.log('conectado com o banco de dados.')
-})
+// sequelize.sync().then(() => {
+//   console.log('conectado com o banco de dados.')
+// })
 
 app.listen(port, () => {
     console.log(`App running on port ${process.env.PORT}.`)

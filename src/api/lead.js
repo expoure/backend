@@ -1,6 +1,6 @@
 const express = require('express')
 const { verifyJWT } = require('../utils/authenticate')
-const { lead } = require('../models')
+const lead = require('../models/Lead')
 const router = express.Router()
 const LeadService = require('../services/lead')
 const { body, check, validationResult } = require('express-validator')
@@ -18,10 +18,11 @@ router.post('/',
     // if (!errors.isEmpty()) {
     //   return res.status(400).json({ errors: errors.array() })
     // }
-    const { description, value, download_speed, upload_speed } = req.body
+    const { name, email, cpf, picture, internet_plan_id } = req.body // pegar também a id
     try {
-      await cursoService.adicionar({ nome, ch })
-      res.status(201).send('Curso adicionado com sucesso!')
+      await leadService.adicionar({ name, email, cpf, picture, internet_plan_id })
+      // Cria o endereço? { address } = req.body
+      res.status(201).send('Lead adicionado com sucesso!')
     } catch (erro) {
       res.status(400).send(erro.message)
     }

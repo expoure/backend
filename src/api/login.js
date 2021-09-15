@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const { verifyJWT } = require('../utils/authenticate')
 const router = express.Router()
 const { body, check, validationResult } = require('express-validator')
-const { user } = require('../models')
+const user = require('../models/User')
 const UserService = require('../services/user')
 // const { body, check, validationResult } = require('express-validator')
 

@@ -5,7 +5,6 @@ const router = express.Router()
 const { body, check, validationResult } = require('express-validator')
 const user = require('../models/User')
 const UserService = require('../services/user')
-// const { body, check, validationResult } = require('express-validator')
 
 const userService = new UserService(user)
 
@@ -28,7 +27,7 @@ router.post(
 })
 
 router.get('/', verifyJWT, async (req, res) => {
-  const users = await userService.get()
+  const users = await userService.getAll()
   res.status(200).json(users)
 })
 

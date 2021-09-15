@@ -3,12 +3,12 @@ class InternetPlanService {
       this.internetPlan = InternetPlanModel
     }
   
-    async get() {
+    async getAll() {
       const internetPlan = await this.internetPlan.findAll()
       return internetPlan
     }
   
-    async adicionar(internetPlanDTO) {
+    async add(internetPlanDTO) {
       try {
         await this.internetPlan.create(internetPlanDTO)
       } catch (erro) {

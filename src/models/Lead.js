@@ -6,7 +6,7 @@ class Lead extends Model {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       cpf: DataTypes.STRING,
-      picture: DataTypes.BLOB,
+      // picture: DataTypes.BLOB,
     }, {
       sequelize
     })

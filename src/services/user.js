@@ -3,12 +3,12 @@ class UserService {
       this.user = UserModel
     }
   
-    async get() {
+    async getAll() {
       const user = await this.user.findAll()
       return user
     }
   
-    async adicionar(userDTO) {
+    async add(userDTO) {
       try {
         await this.user.create(userDTO)
       } catch (erro) {

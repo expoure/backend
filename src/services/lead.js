@@ -3,17 +3,17 @@ class LeadService {
       this.lead = LeadModel
     }
   
-    async get() {
+    async getAll() {
       const lead = await this.lead.findAll(
         { include: [ 
           { association: 'internet_plan' },
-          { association: 'address' } 
+          { association: 'addresses' } 
         ] }
       )
       return lead
     }
 
-    async adicionar(leadDTO) {
+    async add(leadDTO) {
       try {
         await this.lead.create(leadDTO)
       } catch (erro) {
@@ -21,6 +21,39 @@ class LeadService {
         throw erro
       }
     }
+
+    async delete(lead_id) {
+      const lead = await this.lead.findOne(
+        { where: { id: lead_id } },
+        { include: [ 
+          { association: 'internet_plan' },
+          { association: 'addresses' } 
+        ] }
+      )
+
+      if (!lead) {
+        return res.status(400).json({ error: 'Lead not found' });
+      }
+
+      await lead.destroy();
+    }
+
+    async update(leadDTO) {
+      const lead = await this.lead.findOne(
+        { where: { id: leadDTO.id } },
+        { include: [ 
+          { association: 'internet_plan' },
+          { association: 'addresses' } 
+        ] }
+      )
+
+      if (!lead) {
+        return res.status(400).json({ error: 'Lead not found' });
+      }
+
+      await lead.update(leadDTO);
+    }
   }
   
+
   module.exports = LeadService

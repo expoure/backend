@@ -1,33 +1,19 @@
-const address = (sequelize, DataTypes) => {
-    const Address = sequelize.define('Address', {
-      cep: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      state: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      city: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      street: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      number: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      complement: {
-        type: DataTypes.STRING
-      },
-    }, {
-      tableName: 'address'
-    })
+const { Model, DataTypes } = require('sequelize');
 
-    return Address
+class Address extends Model {
+  static init(sequelize) {
+    super.init({
+      zipcode: DataTypes.STRING,
+      street: DataTypes.STRING,
+      number: DataTypes.INTEGER,
+    }, {
+      sequelize
+    })
+  }
+
+  static associate(models) {
+    this.belongsTo(models.Lead, { foreignKey: 'lead_id', as: 'lead' });
+  }
 }
-  
-module.exports = address
+
+module.exports = Address;

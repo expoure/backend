@@ -4,7 +4,7 @@ class InternetPlanService {
     }
   
     async get() {
-      const internetPlan = await this.curso.findAll()
+      const internetPlan = await this.internetPlan.findAll()
       return internetPlan
     }
   

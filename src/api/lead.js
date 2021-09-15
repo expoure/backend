@@ -1,15 +1,15 @@
 const express = require('express')
 const { verifyJWT } = require('../utils/authenticate')
+const { lead } = require('../models')
 const router = express.Router()
-const { internetPlan } = require('../models')
-const InternetPlanService = require('../services/internetPlan')
-// const { body, check, validationResult } = require('express-validator')
+const LeadService = require('../services/lead')
+const { body, check, validationResult } = require('express-validator')
 
-const internetPlanService = new InternetPlanService(internetPlan)
+const leadService = new LeadService(lead)
 
 router.get('/', verifyJWT, async (req, res) => {
-  const internetPlans = await internetPlanService.get()
-  res.status(200).json(internetPlans)
+  const leads = await leadService.get()
+  res.status(200).json(leads)
 })
 
 router.post('/',
@@ -20,11 +20,12 @@ router.post('/',
     // }
     const { description, value, download_speed, upload_speed } = req.body
     try {
-      await internetPlanService.adicionar({ description, value, download_speed, upload_speed })
-      res.status(201).send('Plano adicionado com sucesso!')
+      await cursoService.adicionar({ nome, ch })
+      res.status(201).send('Curso adicionado com sucesso!')
     } catch (erro) {
       res.status(400).send(erro.message)
     }
   })
 
 module.exports = router
+

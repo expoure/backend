@@ -5,5 +5,9 @@ module.exports = {
     port: 5432,
     database: 'mk',
     username: 'postgres',
-    password: ''
-}
+    password: '',
+    define: {
+        timestamps: true,
+        underscored: true,
+    },
+};

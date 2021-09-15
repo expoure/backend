@@ -1,25 +1,21 @@
-const address = require("./Address")
-const internetPlan = require("./InternetPlan")
+const { Model, DataTypes } = require('sequelize');
 
-const lead = (sequelize, DataTypes) => {
-    const Lead = sequelize.define('Lead', {
-      name: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      cpf: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-      },
-      picture: {
-        type: DataTypes.BLOB("long")
-      }
+class User extends Model {
+  static init(sequelize) {
+    super.init({
+      name: DataTypes.STRING,
+      email: DataTypes.STRING,
+      cpf: DataTypes.STRING,
+      picture: DataTypes.BLOB,
     }, {
-      tableName: 'lead'
+      sequelize
     })
+  }
 
-    return Lead
+  static associate(models) {
+    this.hasMany(models.Address, { foreignKey: 'lead_id', as: 'addresses' });
+    this.hasOne(models.InternetPlan, { foreignKey: 'lead_id', as: 'internet_plan' });
+  }
 }
-  
-module.exports = lead
+
+module.exports = User;

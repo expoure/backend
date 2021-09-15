@@ -1,26 +1,20 @@
-const internetPlan = (sequelize, DataTypes) => {
-    const InternetPlan = sequelize.define('InternetPlan', {
-      description: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      value: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      download_speed: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      },
-      upload_speed: {
-        type: DataTypes.INTEGER,
-        allowNull: false
-      }
-    }, {
-      tableName: 'internet_plan'
-    })
+const { Model, DataTypes } = require('sequelize');
 
-    return InternetPlan
+class User extends Model {
+  static init(sequelize) {
+    super.init({
+      description: DataTypes.STRING,
+      value: DataTypes.STRING,
+      download_speed: DataTypes.STRING,
+      upload_speed: DataTypes.STRING,
+    }, {
+      sequelize
+    })
+  }
+
+  static associate(models) {
+    this.belongsToMany(models.Lead, { foreignKey: 'lead_id', as: 'internet_plan' });
+  }
 }
-  
-module.exports = internetPlan
+
+module.exports = User;

@@ -1,8 +1,13 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
+const { verifyJWT } = require('../utils/authenticate')
 const router = express.Router()
 const { body, check, validationResult } = require('express-validator')
 const { user } = require('../models')
+const UserService = require('../services/user')
+// const { body, check, validationResult } = require('express-validator')
+
+const userService = new UserService(user)
 
 router.post(
   '/',
@@ -20,6 +25,11 @@ router.post(
     }
     
     res.status(500).json({message: 'Login inválido!'});
+})
+
+router.get('/', verifyJWT, async (req, res) => {
+  const users = await userService.get()
+  res.status(200).json(users)
 })
 
 module.exports = router

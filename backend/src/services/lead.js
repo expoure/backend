@@ -15,7 +15,8 @@ class LeadService {
 
     async add(leadDTO) {
       try {
-        await this.lead.create(leadDTO)
+        const lead = await this.lead.create(leadDTO)
+        return lead
       } catch (erro) {
         console.error(erro.message)
         throw erro

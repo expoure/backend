@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Novo Lead</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <h2>Novo Lead</h2>
+  <div class="msg"></div>
+  <form>
+    Nome: <input id="nome" type="text" required>
+    <br> <br>
+    E-mail: <input id="email" type="text" required>
+    <br> <br>
+    CPF: <input id="cpf" type="text" required>
+    <br> <br>
+    <label for="internetPlans">Plano de internet:</label>
+      <select id="internetPlans" name="internetPlans">
+      </select> 
+      <br> <br>
+      <div>
+        CEP: <input id="cep" type="text" required>
+        <button class="left-button" type="button" id="searchCep">Buscar</button>
+      </div>
+      <br> <br><br>
+      Rua: <input id="street" type="text" required>
+      <br> <br>
+      Número: <input id="number" type="number" required>
+      <br> <br>
+    <button type="button" id="salvar">Salvar</button>
+  </form>
+  <script src="js/leads.js"></script>
+</body>
+
+</html>
